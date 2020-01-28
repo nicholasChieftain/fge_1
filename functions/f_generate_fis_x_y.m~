@@ -1,0 +1,16 @@
+function [temp_fis_x, temp_fis_y, r]=f_generate_fis_x_y(temp_fis,temp_rand_weight)
+
+persistent z;
+
+temp_fis_x=temp_fis;
+temp_fis_y=temp_fis;
+
+for i=1:125
+    fprintf('%d\n',z);
+    temp_x_weight = temp_rand_weight(z, i);
+    temp_y_weight = temp_rand_weight(z, i+125);
+    temp_fis_x.Rules(i).Weight = temp_x_weight;
+    temp_fis_y.Rules(i).Weight = temp_y_weight;
+r = z;
+end
+end

@@ -2,12 +2,8 @@ function [x_after_kkd, y_after_kkd, error, ntau] = f_kick_point_from_elipse(l_t,
 
 ntau = ceil(rand(1)*l_t/4);
 
-persistent x_with_kkd
-persistent y_with_kkd
-
-if isempty(x_with_kkd)
-    x_with_kkd = zeros(1, ntau);
-    y_with_kkd = zeros(1, ntau);
+x_with_kkd = zeros(1, ntau);
+y_with_kkd = zeros(1, ntau);
     
 for i=1:ntau
     x_with_kkd(i)=x0(i);
