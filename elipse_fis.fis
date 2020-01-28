@@ -1,0 +1,46 @@
+[System]
+Name='elipse_fis'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=2
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='input1'
+Range=[-4 4]
+NumMFs=5
+MF1='NB_e':'trapmf',[-7 -4 -2 -1]
+MF2='Z_e':'trimf',[-1 0 1]
+MF3='PB_e':'trapmf',[1 2 4 7]
+MF4='NS_e':'trimf',[-2 -1 0]
+MF5='PS_e':'trimf',[-0.0211640211640223 0.978835978835978 1.97883597883598]
+
+[Input2]
+Name='input2'
+Range=[-40 40]
+NumMFs=5
+MF1='NB_d_e':'trapmf',[-70 -40 -20 -10]
+MF2='Z_d_e':'trimf',[-10 0 10]
+MF3='PB_d_e':'trapmf',[10 20 40 70]
+MF4='PS_d_e':'trimf',[0 10 20]
+MF5='NS_d_e':'trimf',[-20 -10 0]
+
+[Output1]
+Name='output1'
+Range=[-20 20]
+NumMFs=5
+MF1='NB_r':'trapmf',[-25 -20 -10 -5]
+MF2='Z_r':'trimf',[-5 0 5]
+MF3='PB_r':'trapmf',[5 10 20 25]
+MF4='NS_r':'trimf',[-10 -5 0]
+MF5='PS_r':'trimf',[0 5 10]
+
+[Rules]
+1 1, 1 (1) : 1
+5 4, 4 (1) : 1

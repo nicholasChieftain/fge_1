@@ -1,0 +1,14 @@
+function [temp_fis_x, temp_fis_y]=genetic_elipse(temp_fis,temp_rand_weight)
+
+temp_fis_x=temp_fis;
+temp_fis_y=temp_fis;
+temp_rand_weight = 0.01*round(100*rand(200, 250));
+
+for i=1:125
+        temp_fis_x.Rules(i).Weight=temp_rand_weight(s,i);
+        temp_fis_y.Rules(i-125).Weight=temp_rand_weight(s,i);
+end
+for i=126:250
+        temp_fis_y.Rules(i-125).Weight=temp_rand_weight(s,i);
+end
+end

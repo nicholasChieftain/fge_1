@@ -1,0 +1,17 @@
+clear;
+list_of_function = {@() f_init(),@(dt, a, b, n, l_T) f_generate_elipse(dt, a, b, n, l_T), @(a,x) t1(a, x)};
+state_system = 1;
+
+
+
+while 1
+    
+    switch state_system
+        case 1
+            [n a b dt T l_T x0 y0] = list_of_function{state_system}();
+            state_system = state_system + 1; 
+        case 2
+            [x0 y0] = list_of_function{state}()
+    end
+    
+end
