@@ -17,8 +17,8 @@ kkd_y_value = b*(rand(1)-0.5);
 x_with_kkd(ntau+1) = x_with_kkd(ntau)+kkd_x_value;
 y_with_kkd(ntau+1) = y_with_kkd(ntau)+kkd_y_value;
 
-error = abs(x_with_kkd(ntau+1)-x0(ntau+1)+y_with_kkd(ntau+1)-y0(ntau+1));
-
+%error = abs(x_with_kkd(ntau+1)-x0(ntau+1)+y_with_kkd(ntau+1)-y0(ntau+1));
+error = 0;
 x_after_kkd = x_with_kkd;
 y_after_kkd = x_with_kkd;
 

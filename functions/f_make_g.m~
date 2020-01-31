@@ -1,10 +1,11 @@
-function [n_gen] = f_make_g(sorting_index, rand_w)
+function [new_generation] = f_make_g(sorting_index, rand_w)
 
 persistent dominant_w
 persistent idle_of_best_individ
+persistent new_generation
 
 if isempty(dominant_w)
-    n_gen = 0.01*round(100*rand(100, 250));
+    new_generation = 0.01*round(100*rand(100, 250));
     for i=1:4
         dominant_w(i,:) = zeros(1,250);
         idle_of_best_individ(i,:) = zeros(1,250);
@@ -34,14 +35,13 @@ for i=1:92
     for j=1:125
         if randi([0,1], 1) == 1
             temp_rand(i, j) = dominant_w(1,randi([1,125],1));
-            temp_rand(i, j+125) = dominant_w(1,randi([126,250],1));
+            temp_rand(i+125, j) = dominant_w(1,randi([126,250],1));
         end
     end
 end
 
-n_gen = [dominant_w; idle_of_best_individ; temp_rand]
+new_generation = [dominant_w; idle_of_best_individ; temp_rand]
 
-end
 % for i=5:100
 %     if dominant_w(
 %     new_generation(i,:) = 

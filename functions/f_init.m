@@ -11,7 +11,6 @@ l_T = length(T);
 x0 = zeros(1,l_T);
 y0 = zeros(1,l_T);
 
-massive_of_error = zeros(1,200);
-
+massive_of_error = zeros(1,5);
 end
 
