@@ -27,6 +27,7 @@ while 1
     switch state_system
         case 1
             tic
+            number_of_gen = 0;
             [n, a, b, dt, T, l_T, x0, y0, massive_of_error] = list_of_function{state_system}();
             state_system = state_system + 1;
             fprintf('%d state was completed in %d second\n',state_system-1,toc);
@@ -47,25 +48,37 @@ while 1
             tic
             temp_size_row_of_weight = size(generation);
             [fis_x, fis_y, number_of_row]=list_of_function{state_system}(pattern_fis,generation, temp_size_row_of_weight(1));
-            if number_of_row == temp_size_row_of_weight(1)
-                state_system = 7;
-                continue
-            end
             state_system = state_system + 1;
             fprintf('%d state was completed in %d second\n',state_system-1,toc);
         case 5 
             tic
             clear x y error tau_f_kkng;
             [x, y, error, tau_f_kkng] = list_of_function{state_system}(l_T, x0, y0, a, b);
-            state_system = state_system + 1;
-   
+            state_system = state_system + 1;  
             fprintf('%d state was completed in %d second\n',state_system-1,toc);
         case 6
             tic
-            [error, x, y] = list_of_function{state_system}(tau_f_kkng, l_T, fis_x, fis_y, x, y, error, dt, x0, y0);
-            massive_of_error(number_of_row) = error;
-            fprintf('%d state was completed in %d second\n',state_system,toc);
-            state_system = 4;
+            if number_of_row == 1  
+                [error, x, y] = list_of_function{state_system}(tau_f_kkng, l_T, fis_x, fis_y, x, y, error, dt, x0, y0);
+                massive_of_error(temp_size_row_of_weight(1)) = error;
+                fprintf('%d state was completed in %d second\n',state_system,toc);
+                state_system = 7;
+                plot(x0,y0,x,y);
+                title_for_plot = "Generation: " + int2str(number_of_gen) + " || Number of individ: " + int2str(temp_size_row_of_weight(1));
+                title(title_for_plot);
+                pause(0.1);
+                continue
+            else
+                [error, x, y] = list_of_function{state_system}(tau_f_kkng, l_T, fis_x, fis_y, x, y, error, dt, x0, y0);
+                massive_of_error(number_of_row-1) = error;
+
+                title_for_plot = "Generation: " + int2str(number_of_gen) + " || Number of individ: " + int2str(number_of_row-1);
+                plot(x0,y0,x,y);
+                title(title_for_plot);
+                pause(0.1);
+                fprintf('%d state was completed in %d second\n',state_system,toc);
+                state_system = 4;
+            end
         case 7
             tic
             [massive_of_error, ind_sort_err] = list_of_function{state_system}(massive_of_error);
@@ -75,6 +88,7 @@ while 1
         case 8 
             tic
             generation = list_of_function{state_system}(ind_sort_err, generation);
+            number_of_gen = number_of_gen + 1;
             temp_size_m_e = size(generation);
             massive_of_error = zeros(1, temp_size_m_e(1));
             state_system = 4;

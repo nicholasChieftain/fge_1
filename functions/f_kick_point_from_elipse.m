@@ -1,4 +1,4 @@
-function [x_after_kkd, y_after_kkd, error, ntau] = f_kick_point_from_elipse(l_t, x0, y0, a, b)
+function [x_with_kkd, y_with_kkd, error, ntau] = f_kick_point_from_elipse(l_t, x0, y0, a, b)
 
 ntau = ceil(rand(1)*l_t/4);
 
@@ -19,7 +19,5 @@ y_with_kkd(ntau+1) = y_with_kkd(ntau)+kkd_y_value;
 
 %error = abs(x_with_kkd(ntau+1)-x0(ntau+1)+y_with_kkd(ntau+1)-y0(ntau+1));
 error = 0;
-x_after_kkd = x_with_kkd;
-y_after_kkd = x_with_kkd;
 
 end

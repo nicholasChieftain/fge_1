@@ -15,11 +15,11 @@ for i=1:125
 end
 
 if temp_z == temp_size_row_of_weight   
-    temp_r = temp_z;
     temp_z = 1;    
 else
-    temp_r = temp_z;
     temp_z = temp_z + 1;
 end
-   
+
+temp_r = temp_z;
+
 end

@@ -11,12 +11,12 @@ if isempty(dex)
 end
 
 for i=kkng_tau+2:l_t
-    ex=x(i-1)-x(i-2);
+    ex=x(i-1)-x0(i-1);
     dex=ex/dt;
     ux = evalfis(fis_x, [ex, dex], opt);
     x(i)=x(i-1)+ux;
     
-    ey=y(i-1)-y(i-2);
+    ey=y(i-1)-y0(i-1);
     dey=ey/dt;
     uy = evalfis(fis_y, [ey, dey], opt);
     y(i)=y(i-1)+uy;
