@@ -75,9 +75,9 @@ while 1
         case 8 
             tic
             generation = list_of_function{state_system}(ind_sort_err, generation);
-            temp_size_m_e = size(generation);
+             temp_size_m_e = size(generation);
             massive_of_error = zeros(1, temp_size_m_e(1));
-            state_system = 4;
+             state_system = 4;
             fprintf('%d state was completed in %d second\n',state_system-1,toc);
         otherwise
             fprintf('Programm has been end after %d state\n',state_system-1);

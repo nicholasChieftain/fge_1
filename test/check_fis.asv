@@ -1,0 +1,34 @@
+ntau = ceil(rand(1)*l_T/4);
+
+x_with_kkd = zeros(1, ntau);
+y_with_kkd = zeros(1, ntau);
+    
+for i=1:ntau
+    x_with_kkd(i)=x0(i);
+    y_with_kkd(i)=y0(i);
+end
+
+
+kkd_x_value = a*(rand(1)-0.5);
+kkd_y_value = b*(rand(1)-0.5);
+
+x_with_kkd(ntau+1) = x_with_kkd(ntau)+kkd_x_value;
+y_with_kkd(ntau+1) = y_with_kkd(ntau)+kkd_y_value;
+
+%error = abs(x_with_kkd(ntau+1)-x0(ntau+1)+y_with_kkd(ntau+1)-y0(ntau+1));
+
+x_after_kkd = x_with_kkd;
+y_after_kkd = x_with_kkd;
+
+for i=ntau+2:l_t
+    ex=x_after_kkd(i-1)-x_after_kkd(i-2);
+    dex=ex/dt;
+    ux = evalfis(fis_x, [ex, dex], opt);
+    x_after_kkd(i)=x_after_kkd(i-1)+ux;
+    
+    ey=y(i-1)-y(i-2);
+    dey=ey/dt;
+    uy = evalfis(fis_y, [ey, dey], opt);
+    y_with_kkd(i)=y(i-1)+uy;
+    error=error+abs(x(i)-x0(i)+abs(y(i)-y0(i)));
+end
