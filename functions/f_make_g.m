@@ -2,6 +2,7 @@ function [n_gen] = f_make_g(sorting_index, rand_w)
 
 persistent dominant_w;
 persistent idle_of_best_individ;
+persistent previous_best;
 
 if isempty(dominant_w)
     n_gen = 0.01*round(100*rand(100, 250));
@@ -14,6 +15,8 @@ if isempty(dominant_w)
     end
     
 end
+
+previous_best(1, :) = dominant_w(1, :);
 
 
 for i=1:4
@@ -38,19 +41,48 @@ end
 
 temp_rand = 0.01*round(100*rand(92, 250));
 
-for i=1:40
+for i=1:250
+    temp_rand(1,:) = min(1, max(previous_best(1, i), dominant_w(1, i))*1.2);
+    temp_rand(2,:) = max(previous_best(1, i), dominant_w(1, i))*0.6;
+end
+    
+    
+for i=3:30
     for j=1:125
         if randi([0,1], 1) == 1
             temp_rand(i, j) = dominant_w(1,j)*0.89;
             temp_rand(i, j+125) = dominant_w(1, j)*0.89;
         else
             temp_rand(i, j) = dominant_w(1, j)*0.35;
-            temp_rand(i, j+125) = dominant_w(2, j)*0.35;
+            temp_rand(i, j+125) = dominant_w(1, j)*0.35;
         end
     end
 end
 
-for i = 41:93
+for i=31:40
+    for j=1:250
+        if dominant_w(1, j) <= 1.0 && dominant_w(1, j) >= 0.6
+            temp_rand(i, j) = min(1, dominant_w(1,j)*1.1);
+        else
+            temp_rand(i, j) = dominant_w(1, j)*0.7;
+        end
+    end
+end
+
+
+for i=41:45
+    temp_rand(i, :) = rand_w(sorting_index(1, i-40),:);
+end
+
+for i=41:45
+    for j=1:125
+        if temp_rand(i, j) <= 0.1
+            temp_rand(i, j) = 0;
+        end
+    end
+end
+
+for i = 46:93
      for j=1:125
         if randi([0,1], 1) == 1
             temp_rand(i, j) = dominant_w(1, j);

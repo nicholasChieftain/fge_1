@@ -3,10 +3,10 @@ function [error, x, y] = f_eval_fis_with_r(kkng_tau, l_t, fis_x, fis_y, x, y, er
 persistent dex dey ux uy opt
 
 if isempty(dex)
-    dex = 0
-    dey = 0
-    ux = 0
-    uy = 0
+    dex = 0;
+    dey = 0;
+    ux = 0;
+    uy = 0;
     opt = evalfisOptions('OutOfRangeInputValueMessage','none','NoRuleFiredMessage','none','EmptyOutputFuzzySetMessage','none');
 end
 

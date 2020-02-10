@@ -8,10 +8,10 @@
 %7 - Sorting dominant weight - f_sort_r()
 %8 - Make new generation - f_make_g()
 %% Main programm
-% clear;
-% clear f_generate_fis_x_y f_make_g;
-% addpath('/Users/nicholas_chieftain/Учеба/fge_1/functions');
-% addpath('/Users/nicholas_chieftain/Учеба/fge_1/fis');
+clear;
+clear f_generate_fis_x_y f_make_g;
+addpath('/Users/nicholas_chieftain/Учеба/fge_1/functions');
+addpath('/Users/nicholas_chieftain/Учеба/fge_1/fis');
 list_of_function = {@() f_init()
                     @(dt, a, b, n, l_T) f_generate_elipse(dt, a, b, n, l_T)
                     @(f) f_generate_rule_pattern_fis(f)
@@ -20,7 +20,7 @@ list_of_function = {@() f_init()
                     @(a, b, c, d, e, f, g, i, k, h) f_eval_fis_with_r(a, b, c, d, e, f, g, i, k, h)
                     @(a) f_sort_r(a)
                     @(a, b) f_make_g(a, b)};
-state_system = 4;
+state_system = 1;
 
 while 1
     
