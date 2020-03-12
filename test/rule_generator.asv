@@ -1,0 +1,14 @@
+for i=1:125
+    elipse_fis_2.Rules(i).Weight = 0.01*round(100*rand(1));
+    elipse_fis_2.Rules(i).Connection = 1;
+end
+s = 1
+for i=1:5
+    for j=1:5
+        for k=1:5
+            elipse_fis_2.Rules(s).Antecedent=[i j]
+            elipse_fis_2.Rules(s).Consequent=k;
+            s=s+1;
+        end
+    end
+end
