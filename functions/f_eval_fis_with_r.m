@@ -1,4 +1,4 @@
-function [error, x, y] = f_eval_fis_with_r(kkng_tau, l_t, fis_x, fis_y, x, y, error, dt, x0, y0)
+function [error, x, y, err_x, err_y] = f_eval_fis_with_r(kkng_tau, l_t, fis_x, fis_y, x, y, error, dt, x0, y0, err_x, err_y)
 
 persistent dex dey ux uy opt
 
@@ -15,12 +15,14 @@ for i=kkng_tau+2:l_t
     dex=ex/dt;
     ux = evalfis(fis_x, [ex, dex], opt);
     x(i)=x(i-1)+ux;
+    err_x = err_x + abs(x(i)-x0(i));
     
     ey=y(i-1)-y0(i-1);
     dey=ey/dt;
     uy = evalfis(fis_y, [ey, dey], opt);
     y(i)=y(i-1)+uy;
-    error=error+abs(x(i)-x0(i)+abs(y(i)-y0(i)));
+    err_y = err_y + abs(y(i)-y0(i));
+    error=error+abs(x(i)-x0(i))+abs(y(i)-y0(i));
 end
 
 end

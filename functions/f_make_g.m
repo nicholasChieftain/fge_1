@@ -1,4 +1,4 @@
-function [n_gen] = f_make_g(sorting_index, rand_w)
+function [n_gen] = f_make_g(sorting_index, rand_w,sort_ind_x,sort_ind_y)
 
 persistent dominant_w;
 persistent idle_of_best_individ;
@@ -44,10 +44,19 @@ temp_rand = 0.01*round(100*rand(92, 250));
 for i=1:250
     temp_rand(1,:) = min(1, max(previous_best(1, i), dominant_w(1, i))*1.2);
     temp_rand(2,:) = max(previous_best(1, i), dominant_w(1, i))*0.6;
+    temp_rand(3,:) = min(1, min(previous_best(1, i), dominant_w(1, i))*1.2);
 end
     
+for j=4:5
+    for i=1:125
+         temp_rand(j, i) = rand_w(sort_ind_x(1, j-3), i);
+         temp_rand(j, i+125) = rand_w(sort_ind_y(1, j-3), i+125);
+    end
+end
+
+
     
-for i=3:30
+for i=6:30
     for j=1:125
         if randi([0,1], 1) == 1
             temp_rand(i, j) = dominant_w(1,j)*0.89;
