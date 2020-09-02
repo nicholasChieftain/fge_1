@@ -104,7 +104,3 @@ end
 n_gen = [dominant_w; idle_of_best_individ; temp_rand];
 
 end
-% for i=5:100
-%     if dominant_w(
-%     new_generation(i,:) = 
-    

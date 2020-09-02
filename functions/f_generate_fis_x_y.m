@@ -15,16 +15,6 @@ num_r_weight_y = num2cell(temp_rand_weight(temp_z, 126:250));
 
 [temp_fis_x.Rules.Weight] = deal(num_r_weight_x{:});
 [temp_fis_y.Rules.Weight] = deal(num_r_weight_y{:});
-
-% for i=1:125
-% %    temp_fis_x = setfield(temp_fis_x, 'Rules',{i},'Weight', temp_rand_weight(temp_z, i));
-% %    temp_fis_y = setfield(temp_fis_y, 'Rules',{i},'Weight', temp_rand_weight(temp_z, i+125));
-% %    temp_fis_x.Rules(i).Weight = temp_rand_weight(temp_z, i);
-% %    temp_fis_y.Rules(i).Weight = temp_rand_weight(temp_z, i+125);
-%     temp_fis_x.Rules(i).Weight = num_r_weight(1, i);
-%     temp_fis_y.Rules(i).Weight = num_r_weight(1, i+125);
-%     [temp_fis_x.Rules.Weight]=deal(num_r_weight{:})
-% end
  
 fis_x = temp_fis_x;
 fis_y = temp_fis_y;
